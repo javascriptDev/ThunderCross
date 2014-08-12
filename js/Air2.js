@@ -23,8 +23,7 @@ Air2.prototype = {
     },
     fire: function () {
         var me = this;
-        setTimeout(function () {
-            console.log(window.screen.availHeight - me.source.y);
+        me.timeout1 = setTimeout(function () {
             new Bullet({
                 x: me.source.x,
                 y: window.screen.height - me.source.y - 120,
@@ -40,10 +39,11 @@ Air2.prototype = {
         this.delayTime = time;
         return this;
     },
-    destroy: function (delay) {
+    destroy: function () {
         var me = this;
         setTimeout(function () {
             clearTimeout(me.timeout);
+            clearTimeout(me.timeout1);
             me.parent.removeChild(me.el);
         }, me.delayTime)
     }
