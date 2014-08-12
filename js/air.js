@@ -36,7 +36,6 @@ Air.prototype = {
     },
     fire: function () {
         var me = this;
-
         new Bullet({
             x: me.source.x,
             y: me.source.y

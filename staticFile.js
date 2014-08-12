@@ -53,7 +53,7 @@ function staticFile(req, res) {
                         res.end();
                     });
                 } else {
-                    res.write('not resource');
+                    res.write(filePath);
                     res.end();
                 }
             }
