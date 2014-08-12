@@ -8,7 +8,6 @@ function Air2(opt) {
     this.init();
 }
 Air2.prototype = {
-
     init: function () {
         var me = this;
         this.el = util.createEl('div', {
@@ -30,11 +29,9 @@ Air2.prototype = {
                 y: window.screen.height - me.source.y - 80,
                 color: 'green'
             }).move(-100);
-
             me.timeout = setTimeout(function () {
                 me.delay(0).fire();
             }, 100)
-
         }, me.delayTime)
         return this;
     },
@@ -49,6 +46,4 @@ Air2.prototype = {
             me.parent.removeChild(me.el);
         }, me.delayTime)
     }
-
-
 }
