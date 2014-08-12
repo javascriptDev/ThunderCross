@@ -27,7 +27,7 @@ Air2.prototype = {
             console.log(window.screen.availHeight - me.source.y);
             new Bullet({
                 x: me.source.x,
-                y: window.screen.height - me.source.y - 80,
+                y: window.screen.height - me.source.y - 40,
                 color: 'green'
             }).move(-100);
             me.timeout = setTimeout(function () {
