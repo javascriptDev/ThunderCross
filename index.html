@@ -10,6 +10,8 @@
 	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
 	<title>跑酷</title>
 	<script src="js/util.js"></script>
+	<script src="js/bullet.js"></script>
+	<script src="js/air.js"></script>
 	<script src="js/bg.js"></script>
 	<link href="css/index.css" rel="stylesheet">
 </head>
@@ -64,29 +66,20 @@
 	setTimeout(function () {
 		run(0, 320);
 	}, 1000);
-	var air;
-	function addAir() {
-		air = util.createEl('div', {
-			className: 'air'
-		})
-		document.body.appendChild(air);
-	}
-	addAir();
 
+	new Air({
+		source: {
+			x: 150,
+			y: 100
+		},
+		parent: document.body
+	})
 	function addPage(height, fn) {
 		main.insertBefore(new BG({
 			height: height
 		}).el, main.firstChild);
 		fn && fn();
 	}
-
-	vp.addEventListener('touchmove', function (e) {
-		e.preventDefault();
-		air.style.left = e.touches[0].clientX + 'px';
-		air.style.bottom = window.screen.height - e.touches[0].clientY + 'px';
-
-	})
-
 
 </script>
 </body>

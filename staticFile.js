@@ -28,13 +28,8 @@ function staticFile(req, res) {
         jpg: 'image/jpg',
         ico: 'image/x-icon'
     }
-
     var cache = [];
-
     var filePath = url;
-
-
-
     filePath.indexOf('?') != -1 ? filePath = filePath.split('?')[0] : filePath;
     filePath = filePath.substr(1, filePath.length);
     var sp = filePath.split('.');
@@ -43,8 +38,6 @@ function staticFile(req, res) {
     filePath == '' ? filePath = 'index.html' : null;
     if (filePath != '') {
         ct = ct + ';charset=utf-8';
-        console.log(filePath);
-        console.log(fileType);
         fs.exists(filePath, function (a) {
             if (a) {
                 fs.readFile(filePath, function (err, data) {
