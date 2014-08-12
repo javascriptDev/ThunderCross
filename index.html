@@ -12,6 +12,8 @@
 	<script src="js/util.js"></script>
 	<script src="js/bullet.js"></script>
 	<script src="js/air.js"></script>
+	<script src="js/air2.js"></script>
+
 	<script src="js/bg.js"></script>
 	<link href="css/index.css" rel="stylesheet">
 </head>
@@ -63,17 +65,37 @@
 			});
 		}, duration * 1000);
 	}
+
+	//滚动地图
 	setTimeout(function () {
 		run(0, 320);
 	}, 1000);
 
+	//初始化玩家
 	new Air({
 		source: {
 			x: 150,
 			y: 100
 		},
-		parent: document.body
-	})
+		parent: document.body,
+		bulletTheme: 'red'
+	}).delay(2000).fire();
+
+
+	//添加敌机
+	function addEnemy() {
+		new Air2({
+			source: {
+				x: Math.random() * 1000 % 320,
+				y: 60
+			}
+		}).delay(0).fire().delay(2000).destroy();
+	}
+
+	//3秒添加一个
+	setInterval(addEnemy, 3000)
+
+	//添加页面
 	function addPage(height, fn) {
 		main.insertBefore(new BG({
 			height: height
@@ -81,6 +103,10 @@
 		fn && fn();
 	}
 
+	//输出dom数目
+	setInterval(function () {
+		console.log(document.body.querySelectorAll('.bullet').length);
+	}, 1000)
 </script>
 </body>
 </html>

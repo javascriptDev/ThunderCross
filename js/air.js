@@ -2,12 +2,13 @@
  * Created by a2014 on 14-8-12.
  */
 function Air(opt) {
+    this.delayTime = 0;
     this.source = opt.source || {x: 100, y: 30};
     this.parent = opt.parent;
     this.bullet = opt.bullet;
+    this.opt = opt;
     this.init();
     this.addEvent();
-    this.fire();
 }
 Air.prototype = {
 
@@ -34,16 +35,24 @@ Air.prototype = {
             me.source.y = y;
         })
     },
+    delay: function (time) {
+        this.delayTime = time;
+        return this;
+    },
     fire: function () {
         var me = this;
-        new Bullet({
-            x: me.source.x,
-            y: me.source.y
-        }).move();
-
         setTimeout(function () {
-            me.fire();
-        }, 100)
+            new Bullet({
+                x: me.source.x,
+                y: me.source.y,
+                color: me.opt.bulletTheme
+            }).move(window.screen.availHeight + 200);
+
+            setTimeout(function () {
+                me.delay(0).fire();
+            }, 100)
+        }, me.delayTime)
+
     }
 
 }

@@ -16,7 +16,7 @@ Bullet.prototype = {
                 height: '10px',
                 width: '10px',
                 borderRadius: '5px',
-                background: 'red',
+                background: me.position.color,
                 bottom: me.position.y + 40 + 'px',
                 left: me.position.x + 15 + 'px',
                 position: 'absolute'
@@ -24,7 +24,7 @@ Bullet.prototype = {
         })
         document.body.appendChild(this.el);
     },
-    move: function () {
+    move: function (target) {
         var me = this;
         var distance = window.screen.height - me.position.y;
         var s = this.el.style;
@@ -33,7 +33,7 @@ Bullet.prototype = {
             me.destroy();
         })
         setTimeout(function () {
-            s.bottom = window.screen.availHeight + 100 + 'px';
+            s.bottom = target + 'px';
         }, 16)
     },
     destroy: function () {
