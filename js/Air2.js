@@ -15,7 +15,8 @@ Air2.prototype = {
             style: {
                 top: me.source.y + 'px',
                 left: me.source.x + 'px',
-                transform: 'rotate(180deg)'
+                transform: 'rotate(180deg)',
+                webkitTransform: 'rotate(180deg)'
             }
         });
         this.parent.appendChild(this.el);
