@@ -83,29 +83,22 @@
 
 
 	//添加敌机
-	function addEnemy() {
-		new Air2({
-			source: {
-				x: Math.random() * 1000 % 320,
-				y: 60
-			}
-		}).delay(0).fire().delay(2000).destroy();
-		new Air2({
-			source: {
-				x: Math.random() * 1000 % 320,
-				y: 60
-			}
-		}).delay(0).fire().delay(2000).destroy();
-		new Air2({
-			source: {
-				x: Math.random() * 1000 % 320,
-				y: 60
-			}
-		}).delay(0).fire().delay(2000).destroy();
+	function addEnemy(count) {
+		for (var i = 0; i < count || 1; i++) {
+			new Air2({
+				source: {
+					x: Math.random() * 1000 % 320,
+					y: 60
+				}
+			}).delay(0).fire().delay(2000).destroy();
+		}
 	}
 
 	//3秒添加一个
-	setInterval(addEnemy, 3000)
+	setInterval(function () {
+		var count = Math.floor(Math.random() * 100) % 5;
+		addEnemy(count);
+	}, 3000)
 
 	//添加页面
 	function addPage(height, fn) {
