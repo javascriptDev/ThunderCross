@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+	<meta name="apple-touch-fullscreen" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="default">
+	<meta name="browsermode" content="application">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+	<title>跑酷</title>
+	<script src="js/util.js"></script>
+	<script src="js/bg.js"></script>
+	<link href="css/index.css" rel="stylesheet">
+</head>
+<body>
+<div class="viewport">
+	<div class="main"></div>
+</div>
+<script>
+	var vp = document.querySelector('.viewport');
+	var main = vp.querySelector('.main');
+	function random() {
+		return Math.floor(Math.random() * 10000 % 400);
+	}
+	var initHeight = 800;
+	var mpers = 150;
+	function init() {
+		var s = vp.style,
+				size = window.screen,
+				width = size.availWidth,
+				height = size.availHeight;
+		s.height = height + 'px';
+		s.width = width + 'px';
+		initHeight -= height;
+		main.appendChild(new BG({
+			height: 400
+		}).el);
+
+		main.appendChild(new BG({
+			height: 400
+		}).el);
+
+		main.style.transition = '0s linear';
+		main.style.webkitTransform = 'translate3d(0,' + -initHeight + 'px,0)';
+
+	}
+	init();
+	function run(dur, dis) {
+		var duration = dis / mpers;
+		main.style.transition = duration + 's linear';
+		main.style.webkitTransform = 'translate3d(0,' + dur + 'px,0)';
+
+		setTimeout(function () {
+			addPage(300, function () {
+				main.style.transition = '0s linear';
+				main.style.webkitTransform = 'translate3d(0,-300px,0)';
+				setTimeout(function () {
+					run(0, 300);
+				}, 16)
+			});
+		}, duration * 1000);
+	}
+	setTimeout(function () {
+		run(0, 320);
+	}, 1000);
+	var air;
+	function addAir() {
+		air = util.createEl('div', {
+			className: 'air'
+		})
+		document.body.appendChild(air);
+	}
+	addAir();
+
+	function addPage(height, fn) {
+		main.insertBefore(new BG({
+			height: height
+		}).el, main.firstChild);
+		fn && fn();
+	}
+
+	vp.addEventListener('touchmove', function (e) {
+		e.preventDefault();
+		air.style.left = e.touches[0].clientX + 'px';
+		air.style.bottom = window.screen.height - e.touches[0].clientY + 'px';
+
+	})
+
+
+</script>
+</body>
+</html>
