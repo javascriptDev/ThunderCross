@@ -31,7 +31,7 @@ Air2.prototype = {
             }).move(-100);
             me.timeout = setTimeout(function () {
                 me.delay(0).fire();
-            }, 100)
+            },500)
         }, me.delayTime)
         return this;
     },
