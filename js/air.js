@@ -50,7 +50,7 @@ Air.prototype = {
 
             setTimeout(function () {
                 me.delay(0).fire();
-            }, 100)
+            }, 200)
         }, me.delayTime)
 
     }
