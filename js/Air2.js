@@ -27,7 +27,7 @@ Air2.prototype = {
             new Bullet({
                 x: me.source.x,
                 y: window.screen.height - me.source.y - 120,
-                color: 'green'
+                bulletTheme: 'green'
             }).move(-100);
             me.timeout = setTimeout(function () {
                 me.delay(0).fire();

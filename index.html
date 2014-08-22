@@ -16,6 +16,8 @@
 
 	<script src="js/bg.js"></script>
 	<link href="css/index.css" rel="stylesheet">
+	<link href="css/bullet.css" rel="stylesheet">
+
 </head>
 <body>
 <div class="viewport">
@@ -72,13 +74,13 @@
 	}, 1000);
 
 	//初始化玩家
-	new Air({
+	 player = new Air({
 		source: {
 			x: 150,
 			y: 100
 		},
 		parent: document.body,
-		bulletTheme: 'red'
+		bulletTheme: 'yellow'
 	}).delay(2000).fire();
 
 

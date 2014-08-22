@@ -2,7 +2,7 @@
  * Created by a2014 on 14-8-12.
  */
 function Bullet(o) {
-    this.position = o;
+    this.opt = o;
     this.mpers = 100;
     this.init();
 }
@@ -11,22 +11,17 @@ Bullet.prototype = {
     init: function () {
         var me = this;
         this.el = util.createEl('div', {
-            className: 'bullet',
+            className: 'bullet ' + me.opt.bulletTheme,
             style: {
-                height: '10px',
-                width: '10px',
-                borderRadius: '5px',
-                background: me.position.color,
-                bottom: me.position.y + 40 + 'px',
-                left: me.position.x + 15 + 'px',
-                position: 'absolute'
+                bottom: me.opt.y + 40 + 'px',
+                left: me.opt.x + 15 + 'px'
             }
         })
         document.body.appendChild(this.el);
     },
     move: function (target) {
         var me = this;
-        var distance = window.screen.height - me.position.y;
+        var distance = window.screen.height - me.opt.y;
         var s = this.el.style;
         s.webkitTransition = 'all ' + distance / this.mpers + 's cubic-bezier(.05,.75,.05,.76)';
         this.el.addEventListener('webkitTransitionEnd', function () {

@@ -39,19 +39,24 @@ Air.prototype = {
         this.delayTime = time;
         return this;
     },
+    changeBullet: function (theme) {
+        this.opt.bulletTheme = theme;
+    },
     fire: function () {
         var me = this;
         setTimeout(function () {
             new Bullet({
                 x: me.source.x,
                 y: me.source.y,
-                color: me.opt.bulletTheme
+                bulletTheme: me.opt.bulletTheme
             }).move(window.screen.availHeight + 200);
 
             setTimeout(function () {
                 me.delay(0).fire();
             }, 200)
         }, me.delayTime)
+
+        return this;
 
     }
 
